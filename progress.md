@@ -7,6 +7,7 @@ Input: Demo A @ demo-v1 (6caaf96)
 - [2026-11-12] B2 run-01 draft written: `outputs/run-01/spec_draft.md` (skill v1, 80 claims C-01…C-80, 5 open questions Q-01…Q-05, all 11 sections).
 - [2026-11-12] B3 run-01 round-1 review saved verbatim to `outputs/run-01/checks_round1.md`: 80 rows, 60 verified / 11 incorrect / 9 unresolved (row tally), 5 omissions.
 - [2026-11-12] B4 run-01 revised → `outputs/run-01/spec.md` (18 fixed, 2 moved to Q-06/Q-07, 11 added C-81…C-91; 89 active claims). Round-2 review saved verbatim to `outputs/run-01/checks_round2.md`: 87 verified / 2 incorrect / 0 unresolved (summary line matches row tally).
+- [2026-11-12] B5 run-01 errors analyzed into 6 patterns (F1–F6) in `docs/prompt_iterations.md`; v1 text saved there verbatim; `SKILL.md` updated to v2 with rules R1–R8, each tied to run-01 claim IDs.
 
 ## Decisions
 - [2026-11-12] Cloned from the GitHub remote, not from the local `E:\Project\Test_Agentic`, so Demo A's own folder is never touched (CLAUDE.md §9.6).
@@ -14,6 +15,8 @@ Input: Demo A @ demo-v1 (6caaf96)
 - [2026-11-12] Removed vs open-question handling: struck-through claims are not given a verdict (reviewer lists them in Reviewer notes); Open questions use `Q-NN` IDs and are not claims. So "total" in the run log = active claims only.
 - [2026-11-12] Skill v1 has no citation rule and no observed/inferred tagging (deliberate "before", §8). The Tools table has one claim ID per row so the reviewer can verdict each tool.
 - [2026-11-12] `/agents` wizard is removed in the installed Claude Code version, so it can't list agents. B1 check replaced by: the harness registered `spec-reviewer` (tools Read, Grep, Glob) as an agent type and `write-spec` as a skill after the files were created.
+- [2026-11-12] v2 does not add `[observed]`/`[inferred]` tags: only C-02 was purely inferred, already covered by R6. Rule added only for failures seen in run 1 (§8).
+- [2026-11-12] Generalizing the loop to other projects is a post-interview goal; not done now, to keep the v1→v2 comparison fair.
 - [2026-11-12] No venv for Demo B (nothing is run or installed). If one is ever needed, use `uv`.
 
 ## Open issues
@@ -26,7 +29,7 @@ Input: Demo A @ demo-v1 (6caaf96)
 - run-01 round 2 listed 5 new omissions (on_step exceptions become AgentRunError; "[ESC pressed]" message shown on Ctrl+C/EOF off Windows; "n/a" change; history includes tool messages; `cli.ask()`). Not added: loop limit reached.
 
 ## Next action
-B5: analyze run-01 round-1 errors by pattern; save v1 skill text in `docs/prompt_iterations.md`; write skill v2 with one rule per observed failure (each rule cites run-01 claim IDs).
+B6: run 2 with skill v2 → `outputs/run-02/spec_draft.md`, then spec-reviewer round 1 → `outputs/run-02/checks_round1.md`; compare with run-01 round 1.
 
 ## Run log
 | Run | Skill | Round | Claims | Verified | Incorrect | Unresolved | File |
