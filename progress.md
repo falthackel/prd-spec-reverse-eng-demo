@@ -4,6 +4,7 @@ Input: Demo A @ demo-v1 (6caaf96)
 ## Completed steps
 - [2026-11-12] B0 folder setup: `git init`, `.gitignore` (`input/demo-a/`), cloned Demo A from GitHub (`falthackel/agentic-financial-monitoring-assistant`) at tag `demo-v1` into `input/demo-a/`. Verified `git -C input/demo-a rev-parse --short HEAD` = `6caaf96`. No `.env` in clone.
 - [2026-11-12] B1 created `.claude/settings.json` (deny rules per §6.3), `.claude/agents/spec-reviewer.md` (Agent B, tools Read/Grep/Glob), `.claude/skills/write-spec/SKILL.md` (Agent A, skill v1). Farrel confirmed `/permissions` shows the 6 deny rules; `spec-reviewer` agent and `write-spec` skill registered by the harness.
+- [2026-11-12] B2 run-01 draft written: `outputs/run-01/spec_draft.md` (skill v1, 80 claims C-01…C-80, 5 open questions Q-01…Q-05, all 11 sections).
 
 ## Decisions
 - [2026-11-12] Cloned from the GitHub remote, not from the local `E:\Project\Test_Agentic`, so Demo A's own folder is never touched (CLAUDE.md §9.6).
@@ -18,7 +19,7 @@ Input: Demo A @ demo-v1 (6caaf96)
 - `settings.json` deny rules are exactly §6.3; they don't cover `flowchart.svg`, `twd_idr_history.csv`, `pytest.ini`, `requirements-dev.txt`. Those are excluded by the prompt text only.
 
 ## Next action
-B2: run 1 draft with skill v1 → `outputs/run-01/spec_draft.md`.
+B3: call spec-reviewer on `outputs/run-01/spec_draft.md` (pass only the spec path and `input/demo-a/`), save its output verbatim to `outputs/run-01/checks_round1.md`.
 
 ## Run log
 | Run | Skill | Round | Claims | Verified | Incorrect | Unresolved | File |
