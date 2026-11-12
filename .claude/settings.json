@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "deny": [
+      "Edit(./input/**)",
+      "Read(./input/demo-a/README.md)",
+      "Read(./input/demo-a/demo_script.md)",
+      "Read(./input/demo-a/docs/**)",
+      "Read(./input/demo-a/eval/**)",
+      "Read(./input/demo-a/tests/**)"
+    ]
+  }
+}
