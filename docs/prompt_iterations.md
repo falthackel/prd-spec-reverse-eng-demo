@@ -42,14 +42,27 @@ Each rule answers exactly one pattern above. No other changes were made.
 
 ### Measured result
 
-*To be filled after run 2 (B6): run-01 vs run-02 round-1 counts.*
+Round 1 of each run (the draft as written, before any revision). Same input commit, same reviewer prompt.
 
-| Run | Skill | Round-1 claims | Verified | Incorrect | Unresolved |
-|---|---|---|---|---|---|
-| run-01 | v1 | 80 | 60 | 11 | 9 |
-| run-02 | v2 | | | | |
+| Run | Skill | Writer | Claims | Verified | Incorrect | Unresolved |
+|---|---|---|---|---|---|---|
+| run-01 | v1 | main session | 80 | 60 (75.0%) | 11 (13.8%) | 9 (11.3%) |
+| run-02 | v2 | fresh subagent | 116 | 112 (96.6%) | 2 (1.7%) | 2 (1.7%) |
 
-Limit: one run per version is a small sample. LLM output varies between runs, and the reviewer itself varied on C-75.
+The incorrect rate fell from 13.8% to 1.7%, and the unresolved rate from 11.3% to 1.7%. Every run-02 claim carries a citation (R1).
+
+**What v2 still got wrong (run-02):**
+- **C-113** (incorrect) — "do not persist conversations beyond the process": true for the model's history, but every question and answer is written to `agent_log.txt` on disk (`agent.py:158`, `agent.py:190-191`). This is an F1-type overstatement that R2 and R7 did not prevent.
+- **C-29** (incorrect) — claims a DuckDuckGo data helper inside the cited range `tools.py:85-208`; there is none (DuckDuckGo is called inside `web_search`). The citation existed, but the R7 self-check didn't catch that the range didn't support every part of the claim.
+- **C-38, C-114** (unresolved) — both depend on how an external library or API behaves (`ddgs` result count; Frankfurter's crypto coverage). These are F5-type claims that R5 should have moved to Open questions.
+
+So v2 reduced every failure pattern but did not remove F1 or F5.
+
+**Limits of this comparison:**
+- One run per version is a small sample, and LLM output varies between runs.
+- The writer setup differed: run-01 was written by the main session and run-02 by a fresh subagent. Both started with no prior spec of the code.
+- The reviewer itself varied: run-01's C-75 had identical text in both rounds but got different verdicts.
+- Run-02 has 45% more claims, so percentages are the fair comparison, not raw counts.
 
 ---
 

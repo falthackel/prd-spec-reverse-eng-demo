@@ -8,6 +8,7 @@ Input: Demo A @ demo-v1 (6caaf96)
 - [2026-11-12] B3 run-01 round-1 review saved verbatim to `outputs/run-01/checks_round1.md`: 80 rows, 60 verified / 11 incorrect / 9 unresolved (row tally), 5 omissions.
 - [2026-11-12] B4 run-01 revised → `outputs/run-01/spec.md` (18 fixed, 2 moved to Q-06/Q-07, 11 added C-81…C-91; 89 active claims). Round-2 review saved verbatim to `outputs/run-01/checks_round2.md`: 87 verified / 2 incorrect / 0 unresolved (summary line matches row tally).
 - [2026-11-12] B5 run-01 errors analyzed into 6 patterns (F1–F6) in `docs/prompt_iterations.md`; v1 text saved there verbatim; `SKILL.md` updated to v2 with rules R1–R8, each tied to run-01 claim IDs.
+- [2026-11-12] B6 run-02 draft by fresh subagent (skill v2, 116 claims, all cited) and round-1 review saved verbatim: 112 verified / 2 incorrect / 2 unresolved (summary matches rows). Incorrect rate 13.8% → 1.7%. Result recorded in `docs/prompt_iterations.md`.
 
 ## Decisions
 - [2026-11-12] Cloned from the GitHub remote, not from the local `E:\Project\Test_Agentic`, so Demo A's own folder is never touched (CLAUDE.md §9.6).
@@ -30,10 +31,11 @@ Input: Demo A @ demo-v1 (6caaf96)
 - run-01 round 2 listed 5 new omissions (on_step exceptions become AgentRunError; "[ESC pressed]" message shown on Ctrl+C/EOF off Windows; "n/a" change; history includes tool messages; `cli.ask()`). Not added: loop limit reached.
 
 ## Next action
-B6: run 2 with skill v2 → `outputs/run-02/spec_draft.md`, then spec-reviewer round 1 → `outputs/run-02/checks_round1.md`; compare with run-01 round 1.
+B6 (optional) run-02 revision + round 2, or B7: `docs/case_study.md` + copy finals to `outputs/spec.md`, `outputs/checks.md`. Farrel to choose.
 
 ## Run log
 | Run | Skill | Round | Claims | Verified | Incorrect | Unresolved | File |
 |---|---|---|---|---|---|---|---|
 | run-01 | v1 | 1 | 80 | 60 | 11 | 9 | outputs/run-01/checks_round1.md (row tally; reviewer summary line said 56/13/11) |
 | run-01 | v1 | 2 | 89 | 87 | 2 | 0 | outputs/run-01/checks_round2.md |
+| run-02 | v2 | 1 | 116 | 112 | 2 | 2 | outputs/run-02/checks_round1.md (writer: fresh subagent) |
