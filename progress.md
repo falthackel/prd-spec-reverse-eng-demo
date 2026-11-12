@@ -17,6 +17,7 @@ Input: Demo A @ demo-v1 (6caaf96)
 - [2026-11-12] `/agents` wizard is removed in the installed Claude Code version, so it can't list agents. B1 check replaced by: the harness registered `spec-reviewer` (tools Read, Grep, Glob) as an agent type and `write-spec` as a skill after the files were created.
 - [2026-11-12] v2 does not add `[observed]`/`[inferred]` tags: only C-02 was purely inferred, already covered by R6. Rule added only for failures seen in run 1 (§8).
 - [2026-11-12] Generalizing the loop to other projects is a post-interview goal; not done now, to keep the v1→v2 comparison fair.
+- [2026-11-12] Run-02 draft written by a **fresh general-purpose subagent** (no memory of run 1), not the main session, so the v1→v2 comparison isn't biased by the writer knowing run-1 errors. Its prompt: follow SKILL.md for run-02; don't read `outputs/`, `docs/`, `progress.md`, `README.md`; no git. Chosen by Farrel; he wants this setup to be the standard for future runs too. Limit: run-01 was written by the main session, so run-01 and run-02 writers differ in setup (both fresh to the code, but different sessions).
 - [2026-11-12] No venv for Demo B (nothing is run or installed). If one is ever needed, use `uv`.
 
 ## Open issues
