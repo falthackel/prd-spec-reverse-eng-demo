@@ -59,6 +59,10 @@ First draft of each run, before any revision. Same code, same reviewer:
 
 After one revision and re-review: run-01 reached 87/89 verified, run-02 reached 124/125.
 
+**Run-03 (repeat of v2, wider input):** same skill v2, with two more files in scope (`pytest.ini`, `requirements-dev.txt`). First draft: 138 claims, 4 incorrect (2.9%), 1 unresolved (0.7%). After revision: 144/145 verified. Not strictly comparable with run-01/02 because the input differs. It does show v2's low error rate repeating on a second run.
+
+A recurring blind spot: run-01 (C-84) and run-03 (C-140) were written by independent writers, yet both added the same wrong claim during revision. Each said a web-page label is always shown, when it isn't shown on failed turns. That's a candidate rule for a future v3.
+
 **What v2 added** (each rule tied to run-1 claim IDs in [docs/prompt_iterations.md](docs/prompt_iterations.md)):
 - cite `path:line` for every claim
 - no "all / every / never" unless every code path was checked
@@ -83,8 +87,8 @@ After one revision and re-review: run-01 reached 87/89 verified, run-02 reached 
 | `.claude/skills/write-spec/SKILL.md` | Agent A: writer procedure (currently v2) |
 | `.claude/agents/spec-reviewer.md` | Agent B: read-only reviewer |
 | `.claude/settings.json` | Deny rules: no edits to `input/`, no reading Demo A's docs/tests/eval |
-| `outputs/run-01/`, `outputs/run-02/` | Every run kept: `spec_draft.md`, `checks_round1.md`, `spec.md`, `checks_round2.md` |
-| `outputs/spec.md`, `outputs/checks.md` | Latest final spec and review (run-02) |
+| `outputs/run-01/` … `outputs/run-03/` | Every run kept: `spec_draft.md`, `checks_round1.md`, `spec.md`, `checks_round2.md` |
+| `outputs/spec.md`, `outputs/checks.md` | Latest final spec and review (run-03) |
 | `docs/prompt_iterations.md` | Error patterns, v1 → v2 rules with evidence, full v1 text |
 | `docs/case_study.md` | One caught error, end to end |
 | `progress.md` | Step log, decisions, open issues, and the run log table |
@@ -102,10 +106,10 @@ git -C input/demo-a rev-parse --short HEAD   # must print 6caaf96
 
 Then open Claude Code in the folder and ask, step by step:
 
-1. *"Start run-03: have a fresh subagent follow the write-spec skill and write `outputs/run-03/spec_draft.md`."*
-2. *"Call spec-reviewer on `outputs/run-03/spec_draft.md` and save its output verbatim to `checks_round1.md`."*
-3. *"Revise run-03 using the checks, then re-review."*
+1. *"Start run-04: have a fresh subagent follow the write-spec skill and write `outputs/run-04/spec_draft.md`."*
+2. *"Call spec-reviewer on `outputs/run-04/spec_draft.md` and save its output verbatim to `checks_round1.md`."*
+3. *"Revise run-04 using the checks with a fresh subagent, then re-review."*
 
 Nothing from Demo A is executed. The work is static analysis only.
 
-Note: from run-03 onward, the in-scope files also include `pytest.ini` and `requirements-dev.txt`, so run-03 is not directly comparable to run-01/02.
+Note: from run-03 onward, the in-scope files also include `pytest.ini` and `requirements-dev.txt`, so run-03 and later are not directly comparable to run-01/02.

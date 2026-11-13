@@ -58,6 +58,8 @@ The incorrect rate fell from 13.8% to 1.7%, and the unresolved rate from 11.3% t
 
 So v2 reduced every failure pattern but did not remove F1 or F5.
 
+**Repeat run (run-03, skill v2, 12-file scope):** 138 claims; 133 verified (96.4%), 4 incorrect (2.9%), 1 unresolved (0.7%). The input had 2 more files, so this is a repeat of v2, not a strict comparison. It shows v2's low error rate holding on a second, independent writer. After revision, 144/145 were verified. The one remaining error, C-140 (added during revision: "the web step-box label is always shown"), repeats run-01 C-84 almost exactly. That makes it a v3 candidate: UI claims should list every display path (success, failure, redraw).
+
 **Limits of this comparison:**
 - One run per version is a small sample, and LLM output varies between runs.
 - The writer setup differed: run-01 was written by the main session and run-02 by a fresh subagent. Both started with no prior spec of the code.

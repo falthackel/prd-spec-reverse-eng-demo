@@ -10,8 +10,10 @@ Input: Demo A @ demo-v1 (6caaf96)
 - [2026-11-12] B5 run-01 errors analyzed into 6 patterns (F1–F6) in `docs/prompt_iterations.md`; v1 text saved there verbatim; `SKILL.md` updated to v2 with rules R1–R8, each tied to run-01 claim IDs.
 - [2026-11-12] B6 run-02 draft by fresh subagent (skill v2, 116 claims, all cited) and round-1 review saved verbatim: 112 verified / 2 incorrect / 2 unresolved (summary matches rows). Incorrect rate 13.8% → 1.7%. Result recorded in `docs/prompt_iterations.md`.
 - [2026-11-13] B6 run-02 revision by a fresh subagent (4 fixed, 9 added C-117…C-125, Q-15/Q-16 added; 125 active claims) → `outputs/run-02/spec.md`. Round-2 review saved verbatim: 124 verified / 1 incorrect / 0 unresolved (summary matches rows).
-- [2026-11-13] B7 `docs/case_study.md` written (C-62 "never crashes": claim → reviewer evidence → fix → pattern C-32/C-62/C-65/C-84 → rules R1/R2/R7 → run-02 C-80/C-88/C-91 verified; limits stated). Finals copied: `outputs/spec.md` = run-02 `spec.md`, `outputs/checks.md` = run-02 `checks_round2.md` (byte-identical, checked with `cmp`).
+- [2026-11-13] B7 `docs/case_study.md` written (C-62 "never crashes": claim → reviewer evidence → fix → pattern C-32/C-62/C-65/C-84 → rules R1/R2/R7 → run-02 C-80/C-88/C-91 verified; limits stated). Finals copied (later replaced by run-03): `outputs/spec.md` = run-02 `spec.md`, `outputs/checks.md` = run-02 `checks_round2.md` (byte-identical, checked with `cmp`).
 - [2026-11-13] B8 `README.md` written; pushed to https://github.com/falthackel/prd-spec-reverse-eng-demo (branch `main`). Checked before push: 0 files under `input/` tracked, no secrets.
+- [2026-11-13] `CLAUDE.md` untracked and git-ignored at Farrel's request (kept locally; still present in earlier commits on GitHub, history not rewritten).
+- [2026-11-13] run-03 (skill v2, 12-file scope, fresh writer for draft and revision): draft 138 claims → round 1 133 / 4 / 1; revision 145 claims (5 fixed, 7 added C-139…C-145, Q-14) → round 2 144 / 1 / 0. Summary lines matched row tallies both rounds. Finals now = run-03.
 
 ## Decisions
 - [2026-11-12] Cloned from the GitHub remote, not from the local `E:\Project\Test_Agentic`, so Demo A's own folder is never touched (CLAUDE.md §9.6).
@@ -35,11 +37,13 @@ Input: Demo A @ demo-v1 (6caaf96)
   - **C-84** (added during revision) — the label wording is right, but it isn't shown on failed turns ("Failed") or on earlier turns with no steps. The revision itself introduced this error.
   - **C-75** — the claim text is identical in draft and revision, yet round 1 said verified and round 2 said incorrect ("removes `<br>`" vs "replaces exact `<br>` with a space; `<br/>`, `<BR>` untouched"). Main-session view: the round-2 reading is stricter but fair; the real finding is **reviewer variance between rounds** on unchanged text. Worth stating in the case study as a limit.
 - run-02 round 2, still incorrect (not looped again, §6.5): **C-84** — whitespace-only string replies are not stripped, so they skip the empty-answer placeholder. Text is **identical** in draft and revision; round 1 said verified. Second case of reviewer variance on unchanged text (after run-01 C-75): round 2 tends to be stricter.
+- run-03 round 2, still incorrect (not looped again): **C-140** (added during revision) — web step-box label stated as always shown; it isn't shown on failed turns ("Failed") or redrawn turns with no steps. **Same error as run-01 C-84**, made by an independent writer with no memory of run 1, also while adding a claim during revision. R8 did not prevent it. Candidate for a future v3 rule (e.g. UI claims must list every display path: success, failure, redraw). Not added now: one data point per run, and v3 would need its own comparison run.
+- run-03 round 2 listed 5 new omissions (pending example survives typed input; unknown error kind → `other`; `reset_conversation(new_log=False)`; sidebar legend/caption; status box expanded on failure). Not added: loop limit reached.
 - run-02 round 2 listed 5 new omissions (per-asset log lines in price table; IHSG fails if 5-day history empty; all-failed ERROR includes table; codes not stripped in get_exchange_rate; on_step only for new messages). Not added: loop limit reached.
 - run-01 round 2 listed 5 new omissions (on_step exceptions become AgentRunError; "[ESC pressed]" message shown on Ctrl+C/EOF off Windows; "n/a" change; history includes tool messages; `cli.ask()`). Not added: loop limit reached.
 
 ## Next action
-Done through B8. Optional next: run-03 with the 12-file scope, or generalize the loop for other projects (post-interview).
+All tasks done, plus run-03. Optional next: a v3 skill rule for UI display paths (from run-01 C-84 / run-03 C-140), or generalize the loop for other projects (post-interview).
 
 ## Run log
 | Run | Skill | Round | Claims | Verified | Incorrect | Unresolved | File |
@@ -48,3 +52,5 @@ Done through B8. Optional next: run-03 with the 12-file scope, or generalize the
 | run-01 | v1 | 2 | 89 | 87 | 2 | 0 | outputs/run-01/checks_round2.md |
 | run-02 | v2 | 1 | 116 | 112 | 2 | 2 | outputs/run-02/checks_round1.md (writer: fresh subagent) |
 | run-02 | v2 | 2 | 125 | 124 | 1 | 0 | outputs/run-02/checks_round2.md |
+| run-03 | v2 | 1 | 138 | 133 | 4 | 1 | outputs/run-03/checks_round1.md (12-file scope; writer: fresh subagent) |
+| run-03 | v2 | 2 | 145 | 144 | 1 | 0 | outputs/run-03/checks_round2.md |
