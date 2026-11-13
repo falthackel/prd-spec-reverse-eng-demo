@@ -88,7 +88,6 @@ After one revision and re-review: run-01 reached 87/89 verified, run-02 reached 
 | `docs/prompt_iterations.md` | Error patterns, v1 → v2 rules with evidence, full v1 text |
 | `docs/case_study.md` | One caught error, end to end |
 | `progress.md` | Step log, decisions, open issues, and the run log table |
-| `CLAUDE.md` | Project rules for Claude Code |
 
 ## How to run it
 
