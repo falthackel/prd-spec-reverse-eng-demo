@@ -72,6 +72,22 @@ Run-03 read two more files (`pytest.ini`, `requirements-dev.txt`), so it is a re
 
 **The story in 2 minutes:** [case_study.md](case_study.md) follows one error end to end: "the app never crashes" → caught with line evidence → fixed → traced to the prompt → rule added → measured in run 2.
 
+## Why Claude Code, and what about other LLMs?
+
+### Why Claude Code
+
+This repo contains no program, only instructions: a skill (the writer), a subagent definition (the reviewer), and permission rules. Claude Code is the runtime that turns them into working agents:
+
+- **Guarantees are enforced by the tool, not by trust.** The reviewer runs as a subagent with its **own fresh context** and only `Read`, `Grep`, `Glob`, so it *cannot* see the writer's reasoning, edit files, or run commands. `settings.json` blocks edits to `input/` and reading Demo A's docs. Without this, "independent, read-only reviewer" would be a promise in a prompt, not a property of the setup.
+- **No glue code, so no bugs of our own.** The model, the file-reading and search tools, the tool-calling loop, and subagent isolation are all built in. Nothing to install, no API keys. The only things we wrote are the parts that matter: what each agent may see and do, the evidence format, and the prompt-iteration loop.
+
+### What if we use another LLM?
+
+The design transfers. The prompts are plain Markdown and the claim/verdict format is model-agnostic. You could run the same loop with GPT, Gemini, or an open model, through the API, an agent framework (e.g. LangChain, as Demo A uses), or another agent CLI. What you'd have to rebuild, and what to watch for:
+
+- **Rebuild the guarantees yourself.** You need read-only file and search tools, a separate conversation for the reviewer (only the spec path and code path, nothing else), and a block on reading out-of-scope files. If any of these leak, for example the reviewer sees the writer's chat history, the review is no longer independent and the results mean little.
+- **The numbers here don't transfer.** All runs used Claude as both writer and reviewer. Another model will make different mistakes, so v2's rules may not fit it. Re-run v1 as a baseline and derive rules from *its* errors. Keep the reviewer's model and prompt fixed across runs, or the comparison breaks. One option worth testing: use a **different model as reviewer** than as writer. Two copies of the same model may share blind spots (see C-84 / C-140 above). A different model might catch errors the writer's model misses, but that is an untested idea here.
+
 ## Limits
 
 - One run per skill version is a small sample.
