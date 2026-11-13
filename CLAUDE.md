@@ -66,7 +66,8 @@ Two kinds of fixes, and the demo needs both:
 1. **Read-only.** Never edit, create, or delete anything under `input/`. Never run Demo A code (no `python`, no `pip`, no Gemini calls). This is static analysis only. Demo A has no `.env` in the clone and must not get one.
 2. **Pinned version.** The clone is at tag `demo-v1` (commit `6caaf96`). Every line number in a spec or review refers to that commit. If the clone is ever re-made, check `git -C input/demo-a rev-parse --short HEAD` still prints `6caaf96`. Record the commit in `progress.md`.
 3. **In scope (the "product code"):**
-   `currency_agent.py`, `cli.py`, `agent.py`, `tools.py`, `prompts.py`, `trace_log.py`, `app.py`, `requirements.txt`, `.env.example`, `.streamlit/config.toml`.
+   `currency_agent.py`, `cli.py`, `agent.py`, `tools.py`, `prompts.py`, `trace_log.py`, `app.py`, `requirements.txt`, `.env.example`, `.streamlit/config.toml`, `pytest.ini`, `requirements-dev.txt`.
+   (`pytest.ini` and `requirements-dev.txt` added 2026-11-13, from run-03 onward. run-01 and run-02 used the first 10 files only.)
 4. **Out of scope, do not read:** `README.md`, `docs/`, `demo_script.md`, `eval/`, `tests/`, `flowchart.svg`, `twd_idr_history.csv`.
    Why: Jubo's real case is legacy code with missing or outdated docs. If Agent A reads Demo A's README, it copies prose instead of reverse-engineering code, and the review proves nothing. Code is the only source of truth for both agents.
 

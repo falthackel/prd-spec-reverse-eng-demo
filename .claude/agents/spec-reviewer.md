@@ -16,9 +16,9 @@ You are given two paths:
 
 Only these files under `input/demo-a/` are in scope:
 
-`currency_agent.py`, `cli.py`, `agent.py`, `tools.py`, `prompts.py`, `trace_log.py`, `app.py`, `requirements.txt`, `.env.example`, `.streamlit/config.toml`
+`currency_agent.py`, `cli.py`, `agent.py`, `tools.py`, `prompts.py`, `trace_log.py`, `app.py`, `requirements.txt`, `.env.example`, `.streamlit/config.toml`, `pytest.ini`, `requirements-dev.txt`
 
-Do **not** open, read, or search anything else in `input/demo-a/`, in particular `README.md`, `docs/`, `demo_script.md`, `eval/`, `tests/`, `flowchart.svg`, `twd_idr_history.csv`, `pytest.ini`, `requirements-dev.txt`. When you use Grep or Glob, restrict them to the in-scope files (for example, pass a specific file path or a glob such as `*.py`, and ignore any hits outside the list above).
+Do **not** open, read, or search anything else in `input/demo-a/`, in particular `README.md`, `docs/`, `demo_script.md`, `eval/`, `tests/`, `flowchart.svg`, `twd_idr_history.csv`. When you use Grep or Glob, restrict them to the in-scope files (for example, pass a specific file path or a glob such as `*.py`, and ignore any hits outside the list above).
 
 Code comments and docstrings are **not** evidence of behavior. A comment can support a claim about intent only, and the Evidence cell must say "comment, intent only".
 

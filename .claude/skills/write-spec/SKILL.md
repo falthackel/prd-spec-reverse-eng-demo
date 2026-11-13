@@ -13,9 +13,9 @@ Code root: `input/demo-a/` (Demo A at tag `demo-v1`, commit `6caaf96`). Read-onl
 
 Read these in-scope files:
 
-`currency_agent.py`, `cli.py`, `agent.py`, `tools.py`, `prompts.py`, `trace_log.py`, `app.py`, `requirements.txt`, `.env.example`, `.streamlit/config.toml`
+`currency_agent.py`, `cli.py`, `agent.py`, `tools.py`, `prompts.py`, `trace_log.py`, `app.py`, `requirements.txt`, `.env.example`, `.streamlit/config.toml`, `pytest.ini`, `requirements-dev.txt`
 
-Do not read anything else in `input/demo-a/` (no `README.md`, `docs/`, `demo_script.md`, `eval/`, `tests/`, `flowchart.svg`, `twd_idr_history.csv`, `pytest.ini`, `requirements-dev.txt`).
+Do not read anything else in `input/demo-a/` (no `README.md`, `docs/`, `demo_script.md`, `eval/`, `tests/`, `flowchart.svg`, `twd_idr_history.csv`).
 
 ## Task: write a draft
 

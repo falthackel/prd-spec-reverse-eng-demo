@@ -22,11 +22,12 @@ Input: Demo A @ demo-v1 (6caaf96)
 - [2026-11-12] Run-02 draft written by a **fresh general-purpose subagent** (no memory of run 1), not the main session, so the v1→v2 comparison isn't biased by the writer knowing run-1 errors. Its prompt: follow SKILL.md for run-02; don't read `outputs/`, `docs/`, `progress.md`, `README.md`; no git. Chosen by Farrel; he wants this setup to be the standard for future runs too. Limit: run-01 was written by the main session, so run-01 and run-02 writers differ in setup (both fresh to the code, but different sessions).
 - [2026-11-13] Run-02 revision was also done by a fresh subagent (run-01 revision was done by the main session). Fits Farrel's "fresh writer per run" setup.
 - [2026-11-13] Farrel: add `pytest.ini` and `requirements-dev.txt` to the in-scope files. Applies from **run-03** onward; run-01 and run-02 stay measured on the original 10 files so they remain comparable.
+- [2026-11-13] Scope change edited in SKILL.md (lines 16, 18), spec-reviewer.md (lines 19, 21), CLAUDE.md §4.3. The reviewer prompt changed only in its file list, not in how it judges. §8 says a reviewer change needs a re-review of run 1; not done, because run-01/run-02 stay on the 10-file scope and are not compared against run-03 with the new list. If run-03 is compared to them, say the scope differs by these 2 files.
 - [2026-11-12] No venv for Demo B (nothing is run or installed). If one is ever needed, use `uv`.
 
 ## Open issues
 - ~~Clone also contains `pytest.ini` and `requirements-dev.txt`, not on either scope list.~~ Resolved 2026-11-13: Farrel put them in scope from run-03 (see Decisions).
-- `settings.json` deny rules are exactly §6.3; they don't cover `flowchart.svg`, `twd_idr_history.csv`, `pytest.ini`, `requirements-dev.txt`. Those are excluded by the prompt text only.
+- `settings.json` deny rules are exactly §6.3; they don't cover `flowchart.svg`, `twd_idr_history.csv`. Those are excluded by the prompt text only.
 - run-01 round 1: the reviewer's "Summary counts" line (56 / 13 / 11) does not match its own table (60 verified / 11 incorrect / 9 unresolved; counted with `grep -c "^| C-.. | <verdict> |"`). File kept verbatim per §6.1. Run log uses the row tally. Reviewer prompt not changed (must stay fixed, §8); the main session should recount rows on every review.
 - run-01 round 2, still incorrect (not looped again, §6.5):
   - **C-84** (added during revision) — the label wording is right, but it isn't shown on failed turns ("Failed") or on earlier turns with no steps. The revision itself introduced this error.
