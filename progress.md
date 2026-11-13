@@ -10,6 +10,7 @@ Input: Demo A @ demo-v1 (6caaf96)
 - [2026-11-12] B5 run-01 errors analyzed into 6 patterns (F1–F6) in `docs/prompt_iterations.md`; v1 text saved there verbatim; `SKILL.md` updated to v2 with rules R1–R8, each tied to run-01 claim IDs.
 - [2026-11-12] B6 run-02 draft by fresh subagent (skill v2, 116 claims, all cited) and round-1 review saved verbatim: 112 verified / 2 incorrect / 2 unresolved (summary matches rows). Incorrect rate 13.8% → 1.7%. Result recorded in `docs/prompt_iterations.md`.
 - [2026-11-13] B6 run-02 revision by a fresh subagent (4 fixed, 9 added C-117…C-125, Q-15/Q-16 added; 125 active claims) → `outputs/run-02/spec.md`. Round-2 review saved verbatim: 124 verified / 1 incorrect / 0 unresolved (summary matches rows).
+- [2026-11-13] B7 `docs/case_study.md` written (C-62 "never crashes": claim → reviewer evidence → fix → pattern C-32/C-62/C-65/C-84 → rules R1/R2/R7 → run-02 C-80/C-88/C-91 verified; limits stated). Finals copied: `outputs/spec.md` = run-02 `spec.md`, `outputs/checks.md` = run-02 `checks_round2.md` (byte-identical, checked with `cmp`).
 
 ## Decisions
 - [2026-11-12] Cloned from the GitHub remote, not from the local `E:\Project\Test_Agentic`, so Demo A's own folder is never touched (CLAUDE.md §9.6).
@@ -37,7 +38,7 @@ Input: Demo A @ demo-v1 (6caaf96)
 - run-01 round 2 listed 5 new omissions (on_step exceptions become AgentRunError; "[ESC pressed]" message shown on Ctrl+C/EOF off Windows; "n/a" change; history includes tool messages; `cli.ask()`). Not added: loop limit reached.
 
 ## Next action
-B7: `docs/case_study.md` (one caught error end to end) + copy run-02 finals to `outputs/spec.md`, `outputs/checks.md`.
+B8: `README.md` (problem → workflow → how to run → results) + push to a new GitHub repo (needs Farrel's OK and repo name; `input/demo-a/` must not be pushed).
 
 ## Run log
 | Run | Skill | Round | Claims | Verified | Incorrect | Unresolved | File |
